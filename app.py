@@ -1,9 +1,13 @@
 from flask import Flask, render_template
-MyApp = Flask(__name__)
+app = Flask(__name__)
 
-@MyApp.route("/")
+@app.route("/")
 def hello():
 	return render_template('index.html')
 
+@app.route('/health')
+def handle_health():
+    return "OK"
+
 if __name__ == "__main__":
-	MyApp.run()
+	app.run(host="0.0.0.0")
