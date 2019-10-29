@@ -15,4 +15,4 @@ This project shows how to perform deployment for [Flask example app](http://flas
 6) Follow deployment workflow https://app.terraform.io 
 
 # Destroy
-- From Terraform Cloud web console add new variable `enabled = "false"` and follow workflow.
+- From Terraform Cloud web console add new HCL variable `enabled = "false"` and follow workflow.
