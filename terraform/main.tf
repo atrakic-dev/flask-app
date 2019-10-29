@@ -1,6 +1,6 @@
 variable "enabled" {
-  description = "Set to false to prevent the module from creating any resources"
-  default     = "false"
+  description = "Set to false to prevent from creating any resources"
+  default     = "true"
 }
 
 locals {
