@@ -1,9 +1,8 @@
 ## Flask example app
 
-This project shows how to perform deployment for [Flask](http://flask.pocoo.org/) example app.
+This project shows how to perform deployment for [Flask example app](http://flask.pocoo.org/).
 
 # Requirements
-
 - [Terraform Cloud account](https://terraform.io)
 - [DigitalOcean account](https://cloud.digitalocean.com/login)
 
@@ -15,5 +14,5 @@ This project shows how to perform deployment for [Flask](http://flask.pocoo.org/
 5) Add environment variable `DIGITALOCEAN_TOKEN=....`and` to match your token and set it to sensitive.
 6) Follow deployment workflow https://app.terraform.io 
 
-## To destroy
-- Edit `terraform/terraform.tfvars` and set to `"false"` to destroy droplet.
+# Destroy
+- From Terraform Cloud web console add new variable `enabled = "false"` and follow workflow.
