@@ -1,0 +1,36 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - DOCKER_IMAGE=xomodo/flask-app
+
+stages:
+  - name: build
+    if: branch = master
+
+jobs:
+  include:
+    - stage: build
+      script:
+      - docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"    
+      - docker build --rm --tag "$DOCKER_IMAGE":"$TRAVIS_COMMIT" .
+      - docker build --rm --tag "$DOCKER_IMAGE":latest .
+      - docker images
+      - docker run --name flask-app --rm --detach -p 5000:5000 "$DOCKER_IMAGE":"$TRAVIS_COMMIT"
+      - docker ps
+      - sleep 10
+      - curl -I http://127.0.0.1:5000/
+      - docker push "$DOCKER_IMAGE":"$TRAVIS_COMMIT"  
+      - docker push "$DOCKER_IMAGE":latest  
+
+before_deploy:
+  - rm -rf ./terraform/terraform.tf
+
+deploy:
+  provider: script
+  script: 
+  - cd ./terraform
+  - ../scripts/deploy.sh
+  on:
+    branch: staging

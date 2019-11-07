@@ -1,5 +1,5 @@
 node('docker') {
-  def appName = 'myflask'
+  def appName = 'flask-app'
   def imageTag = "xomodo/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
 
   stage('Clone repository') {
